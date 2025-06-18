@@ -1,0 +1,23 @@
+cc_library_shared {
+    name: "libstagefrighthw",
+    vendor: true,
+    srcs: ["QComOMXPlugin.cpp"],
+    cflags: [
+        "-DUSE_NATIVE_HANDLE_SOURCE",
+    ],
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "libdl",
+    ],
+    header_libs: [
+        "libstagefright_headers",
+        "media_plugin_headers",
+    ],
+}
+
+cc_library_headers {
+    name: "libstagefrighthw_headers",
+    vendor: true,
+    export_include_dirs: ["."],
+}

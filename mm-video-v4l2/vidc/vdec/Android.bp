@@ -1,0 +1,65 @@
+cc_library_shared {
+    name: "libOmxVdec",
+    vendor: true,
+
+    srcs: [
+        "src/frameparser.cpp",
+        "src/h264_utils.cpp",
+        "src/ts_parser.cpp",
+        "src/mp4_utils.cpp",
+        "src/hevc_utils.cpp",
+        "src/omx_vdec_msm8974.cpp",
+    ],
+
+    include_dirs: [
+        "hardware/qcom-caf/msm8994/media/mm-core/inc",
+    ],
+
+    cflags: [
+        "-Werror",
+        "-Wno-parentheses",
+        "-D_ANDROID_",
+        "-D_ANDROID_ICS_",
+        "-D_MSM8974_",
+        "-DPROCESS_EXTRADATA_IN_OUTPUT_PORT",
+        "-DMAX_RES_1080P",
+        "-DMAX_RES_1080P_EBI",
+        "-DVENUS_HEVC",
+        "-DUSE_ION",
+        "-DADAPTIVE_PLAYBACK_SUPPORTED",
+        "-DFLEXYUV_SUPPORTED",
+        "-DALLOCATE_OUTPUT_NATIVEHANDLE",
+        "-Wno-pointer-bool-conversion",
+    ],
+
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+        "media_plugin_headers",
+        "libomxcommon_headers",
+        "media_headers",
+        "libc2dcolorconvert_headers",
+        "libomxvdec_headers",
+        "libnativebase_headers",
+        "libutils_headers",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libutils",
+        "libui",
+        "libcutils",
+        "libdl",
+        "libqdMetaData",
+    ],
+
+    static_libs: [
+        "libOmxVidcCommon",
+    ],
+}
+
+cc_library_headers {
+    name: "libomxvdec_headers",
+    vendor: true,
+    export_include_dirs: ["inc"],
+}

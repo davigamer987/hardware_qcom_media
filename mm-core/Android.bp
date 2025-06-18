@@ -1,0 +1,46 @@
+cc_defaults {
+    name: "libmm-omxcore_defaults",
+    cflags: [
+        "-DVERBOSE",
+        "-O0",
+        "-fno-inline",
+        "-fno-short-enums",
+        "-D_ANDROID_",
+        "-U_ENABLE_QC_MSG_LOG_",
+    ],
+    shared_libs: [
+        "liblog",
+        "libdl",
+    ],
+    local_include_dirs: [
+        "src/common",
+        "inc",
+    ],
+    vendor: true,
+}
+
+cc_library_shared {
+    name: "libOmxCore",
+    defaults: ["libmm-omxcore_defaults"],
+    srcs: [
+        "src/common/omx_core_cmp.cpp",
+        "src/common/qc_omx_core.c",
+        "src/msm8994/registry_table_android.c",
+    ],
+}
+
+cc_library_shared {
+    name: "libmm-omxcore",
+    defaults: ["libmm-omxcore_defaults"],
+    srcs: [
+        "src/common/omx_core_cmp.cpp",
+        "src/common/qc_omx_core.c",
+        "src/msm8994/registry_table.c",
+    ],
+}
+
+cc_library_headers {
+    name: "media_headers",
+    vendor: true,
+    export_include_dirs: ["inc"],
+}

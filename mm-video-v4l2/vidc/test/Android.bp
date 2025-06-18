@@ -1,0 +1,14 @@
+cc_binary {
+    name: "msm-vidc-test",
+    vendor: true,
+    srcs: [
+        "msm_vidc_test.c",
+        "queue.c",
+        "ring_queue.c",
+    ],
+    cflags: [
+        "-DLOG_TAG=\\\"MSM-VIDC-TEST\\\"",
+    ],
+    header_libs: ["generated_kernel_headers"],
+    compile_multilib: "32",
+}

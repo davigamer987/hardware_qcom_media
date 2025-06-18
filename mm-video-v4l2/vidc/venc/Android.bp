@@ -1,0 +1,58 @@
+cc_library_shared {
+    name: "libOmxVenc",
+    vendor: true,
+
+    srcs: [
+        "src/omx_video_base.cpp",
+        "src/omx_video_encoder.cpp",
+        "src/video_encoder_device_v4l2.cpp",
+    ],
+
+    include_dirs: [
+        "hardware/qcom-caf/msm8994/media/mm-core/inc",
+    ],
+
+    cflags: [
+        "-Werror",
+        "-Wno-misleading-indentation",
+        "-D_ANDROID_",
+        "-D_ANDROID_ICS_",
+        "-D_MSM8974_",
+        "-DMAX_RES_1080P",
+        "-DMAX_RES_1080P_EBI",
+        "-DSUPPORT_CONFIG_INTRA_REFRESH",
+        "-DUSE_ION",
+        "-DUSE_NATIVE_HANDLE_SOURCE",
+    ],
+
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+        "media_plugin_headers",
+        "libomxcommon_headers",
+        "media_headers",
+        "libstagefrighthw_headers",
+        "libc2dcolorconvert_headers",
+        "libomxvenc_headers",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libutils",
+        "libOmxCore",
+        "libcutils",
+        "libc2dcolorconvert",
+        "libdl",
+        "libgui_vendor",
+    ],
+
+    static_libs: [
+        "libOmxVidcCommon",
+    ],
+}
+
+cc_library_headers {
+    name: "libomxvenc_headers",
+    vendor: true,
+    export_include_dirs: ["inc"],
+}
